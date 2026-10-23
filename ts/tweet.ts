@@ -26,7 +26,11 @@ class Tweet {
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
         //TODO: identify whether the tweet is written
-        return false;
+        // part 1: c) user-written tweets
+        console.log("TEST TEST");
+        const strippedText = this.text.split(" https://")[0];
+        console.log(strippedText);
+        return strippedText.includes(" - ");
     }
 
     get writtenText():string {
@@ -34,7 +38,9 @@ class Tweet {
             return "";
         }
         //TODO: parse the written text from the tweet
-        return "";
+        // part 1: c) user-written tweets
+        const strippedText = this.text.split(" https://")[0]; // take the half before " https://" with [0] index
+        return strippedText.split(" - ")[1]; // take the part after " - " with [1] index; [0] is the RunKeeper generated text
     }
 
     get activityType():string {

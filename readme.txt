@@ -3,7 +3,7 @@
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
 
 */10
-- 1/3 Summarizing tweets
+- 2/3 Summarizing tweets
 - */4 Identifying the most popular activities
 - */3 Adding a text search interface
 
@@ -13,6 +13,7 @@
 
 3. What online resources did you consult when completing this assignment? (list sites like StackOverflow or specific URLs for tutorials; describe queries to Generative AI or use of AI-based code completion)
 w3schools: https://www.w3schools.com/jsref/met_document_getelementbyid.asp, https://www.w3schools.com/react/react_es6_spread.asp
+GeeksforGeeks: https://www.geeksforgeeks.org/javascript/how-to-remove-a-character-from-string-in-javascript/
 
 
 4. What classmates or other individuals did you consult as part of this assignment? What did you discuss?

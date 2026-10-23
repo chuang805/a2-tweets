@@ -55,6 +55,14 @@ function parseTweets(runkeeper_tweets) {
 	
 	const miscellaneousWholePct = (miscellaneousAmt / tweet_array.length) * 100;
 	document.getElementsByClassName('miscellaneousPct')[0].innerText = miscellaneousWholePct.toFixed(2) + "%";
+
+	// part 1: c) user-written tweets
+	const allUserWritten = tweet_array.filter(tweet => tweet.written); // create array with tweets from tweet array that have written text (true boolean)
+	const userWrittenAmt = allUserWritten.length;
+	document.getElementsByClassName('written')[0].innerText = userWrittenAmt; // replace first instance of written in html with userWrittenAmt
+
+	const userWrittenWholePct = (userWrittenAmt / completedEventsAmt) * 100;
+	document.getElementsByClassName('writtenPct')[0].innerText = userWrittenWholePct.toFixed(2) + "%";
 	
 }
 
