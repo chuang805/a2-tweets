@@ -24,7 +24,12 @@ function parseTweets(runkeeper_tweets) {
 	// the found min/max are then converted into Date objects, and then formatted with toLocaleDateString() for local timezone.
 	document.getElementById('firstDate').innerText = new Date(Math.min(...times)).toLocaleDateString();
 	document.getElementById('lastDate').innerText = new Date(Math.max(...times)).toLocaleDateString();
-	document.getElementById('numberTweets').innerText = "Help Me";
+
+	// part 1: b) tweet categories. source getter function in tweet.ts determined categories for tweets
+	const completedEvents = tweet_array.filter(tweet => tweet.source == "completed_event") // create an array with tweets that return completed_event when source getter (function in tweet.ts) is called
+	const completedEventsAmt = completedEvents.length; // num of tweets in completedEvents array
+
+	document.getElementsByClassName('completedEvents')[0].innerText = completedEventsAmt; //getElementsByClassName returns array of all elements that match class name. replace
 }
 
 //Wait for the DOM to load
