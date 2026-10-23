@@ -27,9 +27,7 @@ class Tweet {
     get written():boolean {
         //TODO: identify whether the tweet is written
         // part 1: c) user-written tweets
-        console.log("TEST TEST");
         const strippedText = this.text.split(" https://")[0];
-        console.log(strippedText);
         return strippedText.includes(" - ");
     }
 
