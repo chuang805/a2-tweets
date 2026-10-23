@@ -13,8 +13,6 @@ function parseTweets(runkeeper_tweets) {
 	//It works correctly, your task is to update the text of the other tags in the HTML file!
 	document.getElementById('numberTweets').innerText = tweet_array.length;	
 
-	console.log(document.getElementById('numberTweets'));
-
 	// part 1: a) tweet dates
 	const times = tweet_array.map(t => t.time); // creates arrays of all times from all tweets in tweetsarray
 
@@ -26,10 +24,38 @@ function parseTweets(runkeeper_tweets) {
 	document.getElementById('lastDate').innerText = new Date(Math.max(...times)).toLocaleDateString();
 
 	// part 1: b) tweet categories. source getter function in tweet.ts determined categories for tweets
-	const completedEvents = tweet_array.filter(tweet => tweet.source == "completed_event") // create an array with tweets that return completed_event when source getter (function in tweet.ts) is called
-	const completedEventsAmt = completedEvents.length; // num of tweets in completedEvents array
+	const allCompletedEvents = tweet_array.filter(tweet => tweet.source == "completed_event"); // create an array with tweets that return completed_event when source getter (function in tweet.ts) is called
+	const completedEventsAmt = allCompletedEvents.length; // num of tweets in completedEvents array
+	document.getElementsByClassName('completedEvents')[0].innerText = completedEventsAmt; // replace the completedEvents placeholder in index.html with innerText. getElementsByClassName returns array of all elements that match class name, we want to set the first calling ([0])
+	document.getElementsByClassName('completedEvents')[1].innerText = completedEventsAmt; // replace the second calling ([1]) of completedEvents in index.html
+	
+	const completedEventsWholePct = (completedEventsAmt / tweet_array.length) * 100
+	document.getElementsByClassName('completedEventsPct')[0].innerText = completedEventsWholePct.toFixed(2)+"%";
+	// console.log("% of completed events", (completedEventsAmt / tweet_array.length) * 100);
 
-	document.getElementsByClassName('completedEvents')[0].innerText = completedEventsAmt; //getElementsByClassName returns array of all elements that match class name. replace
+	const allLiveEvents = tweet_array.filter(tweet => tweet.source == "live_event");
+	const liveEventsAmt = allLiveEvents.length;
+	document.getElementsByClassName('liveEvents')[0].innerText = liveEventsAmt;
+	
+	const liveEventsWholePct = (liveEventsAmt / tweet_array.length) * 100;
+	document.getElementsByClassName('liveEventsPct')[0].innerText = liveEventsWholePct.toFixed(2) + "%";
+	// console.log("% of live events", (liveEventsAmt / tweet_array.length) * 100);
+
+	const allAchievements = tweet_array.filter(tweet => tweet.source == "achievement");
+	const achievementsAmt = allAchievements.length;
+	document.getElementsByClassName('achievements')[0].innerText = achievementsAmt;
+	
+	const achievementsWholePct = (achievementsAmt / tweet_array.length) * 100;
+	document.getElementsByClassName('achievementsPct')[0].innerText = achievementsWholePct.toFixed(2) + "%";
+	// console.log("% of achievements", (achievementsAmt / tweet_array.length) * 100);
+
+	const allMiscellaneous = tweet_array.filter(tweet => tweet.source == "miscellaneous");
+	const miscellaneousAmt = allMiscellaneous.length;
+	document.getElementsByClassName('miscellaneous')[0].innerText = miscellaneousAmt;
+	
+	const miscellaneousWholePct = (miscellaneousAmt / tweet_array.length) * 100;
+	document.getElementsByClassName('miscellaneousPct')[0].innerText = miscellaneousWholePct.toFixed(2) + "%";
+	
 }
 
 //Wait for the DOM to load

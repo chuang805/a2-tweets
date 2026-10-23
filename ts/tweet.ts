@@ -17,7 +17,7 @@ class Tweet {
         else if (this.text.includes("#RKLive")) {
             return "live_event";
         }
-        else if (this.text.includes("achieved") || this.text.includes("just set a goal")) {
+        else if (this.text.includes("#FitnessAlerts") || this.text.includes("just set a goal")) {
             return "achievement";
         }
         return "miscellaneous"; // if none of the above
