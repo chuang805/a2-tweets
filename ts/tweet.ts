@@ -42,6 +42,7 @@ class Tweet {
     }
 
     get activityType():string {
+
         if (this.source != 'completed_event') {
             return "unknown";
         }
@@ -55,7 +56,11 @@ class Tweet {
         else {
             unitIndex = words.indexOf("km"); // if the unit isnt mi, then it is km
         }
-        return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit
+        console.log(this.text);
+        console.log(words);
+        console.log(unitIndex);
+        console.log(words[unitIndex + 1]);
+        return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit 
     }
 
     get distance():number {
