@@ -4,7 +4,7 @@
 
 */10
 - 3/3 Summarizing tweets
-- */4 Identifying the most popular activities
+- 2/4 Identifying the most popular activities
 - */3 Adding a text search interface
 
 2. How long, in hours, did it take you to complete this assignment?
@@ -14,6 +14,7 @@
 3. What online resources did you consult when completing this assignment? (list sites like StackOverflow or specific URLs for tutorials; describe queries to Generative AI or use of AI-based code completion)
 w3schools: https://www.w3schools.com/jsref/met_document_getelementbyid.asp, https://www.w3schools.com/react/react_es6_spread.asp
 GeeksforGeeks: https://www.geeksforgeeks.org/javascript/how-to-remove-a-character-from-string-in-javascript/
+MDN Web Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
 
 
 4. What classmates or other individuals did you consult as part of this assignment? What did you discuss?
