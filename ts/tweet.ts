@@ -62,9 +62,18 @@ class Tweet {
         if(this.source != 'completed_event') {
             return 0;
         }
-        //TODO: prase the distance from the text of the tweet
-        // part 2: a) determining distance
-        return 0;
+        //TODO: parse the distance from the text of the tweet
+        // part 2: a) determining distance. only for completed
+        const words = this.text.split(" "); 
+        let unitIndex;
+        if (words.indexOf("mi") !== -1) { // mi doesnt have to be converted. so if this completed tweet is in miles...
+            unitIndex = words.indexOf("mi");
+            return Number(words[unitIndex - 1]); // convert the string at [1 before the index of mi] into a Number
+        }
+        else { // it's km, need to convert to miles
+            unitIndex = words.indexOf("km");
+            return (Number(words[unitIndex - 1]) / 1.609); // 1 mi = 1.609 km
+        }
     }
 
     getHTMLTableRow(rowNumber:number):string {
