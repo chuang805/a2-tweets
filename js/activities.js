@@ -74,6 +74,18 @@ function parseTweets(runkeeper_tweets) {
 	//TODO: create the visualizations which group the three most-tweeted activities by the day of the week.
 	//Use those visualizations to answer the questions about which activities tended to be longest and when.
 	// 2b) graphing activities by distance
+	const sortedActivities = Object.entries(activityCounts).sort((a, b) => b[1] - a[1]);
+	const topThree = [
+    sortedActivities[0][0],
+    sortedActivities[1][0],
+    sortedActivities[2][0]
+	];
+
+	// write 3 most logged tweets on activities page
+	document.getElementById('firstMost').innerText = sortedActivities[0][0];
+	document.getElementById('secondMost').innerText = sortedActivities[1][0];
+	document.getElementById('thirdMost').innerText = sortedActivities[2][0];
+		
 }
 
 //Wait for the DOM to load
