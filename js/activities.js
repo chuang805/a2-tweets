@@ -38,6 +38,10 @@ function parseTweets(runkeeper_tweets) {
     // }
 	// });
 
+	// write num of activities on activities html
+	const numActivityTypes = Object.keys(activityCounts).length;
+	document.getElementById('numberActivities').innerText = numActivityTypes;
+
 	// turning activityCounts into Vega-Lite data for 2b
 	const activityData = Object.entries(activityCounts).map( // Object.entries() turns the activityCounts object into an array, each object in the array is [key, value] array. an array of arrays
 		([activity, count]) => ({ // map then turns each array in [key, value] form into objects in key: value format. .map() unpacks each array into an object
