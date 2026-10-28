@@ -22,13 +22,13 @@ function parseTweets(runkeeper_tweets) {
 			}
 		}
 	});
-
+	console.log(activityCounts);
 	// turning activityCounts into Vega-Lite data for 2b
 	const activityData = Object.entries(activityCounts).map( // Object.entries() turns the activityCounts object into an array, each object in the array is [key, value] array. an array of arrays
 		([activity, count]) => ({ // map then turns each array in [key, value] form into objects in key: value format. .map() unpacks each array into an object
 			activity: activity,
 			count: count
-		}) // so after unpacking, this is an array of key:value pairs and vega-lite can read these fields
+		}) // so after unpacking, this is an array of objects that each contain a key:value pair; vega-lite can read these fields
 	)
 
 	activity_vis_spec = {
@@ -36,8 +36,19 @@ function parseTweets(runkeeper_tweets) {
 	  "description": "A graph of the number of Tweets containing each type of activity.",
 	  "data": {
 	    "values": activityData // changed from tweet_array to activityData
+	  },
+	//TODO: Add mark and encoding
+	  "mark": "bar",
+	  "encoding": {
+		"x": {
+			"field": "activity",
+			"type": "nominal"
+			},
+		"y": {
+			"field": "count",
+			"type": "quantitative"
+		}
 	  }
-	  //TODO: Add mark and encoding
 	};
 	vegaEmbed('#activityVis', activity_vis_spec, {actions:false});
 
