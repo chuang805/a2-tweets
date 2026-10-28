@@ -9,6 +9,11 @@ function parseTweets(runkeeper_tweets) {
 		return new Tweet(tweet.text, tweet.created_at);
 	});
 
+	// console.log(tweet_array[0].text);
+	// console.log(tweet_array[0].source);
+	// console.log(tweet_array[0].activityType);
+	// console.log(tweet_array[0].distance);
+	
 	//TODO: create a new array or manipulate tweet_array to create a graph of the number of tweets containing each type of activity.
 	// 2a updating spans for freq activity
 	const activityCounts = {}; // will hold num of every acitivity counted, key:value pairs in this object
@@ -22,7 +27,7 @@ function parseTweets(runkeeper_tweets) {
 			}
 		}
 	});
-	console.log(activityCounts);
+	// console.log(activityCounts);
 
 	// turning activityCounts into Vega-Lite data for 2b
 	const activityData = Object.entries(activityCounts).map( // Object.entries() turns the activityCounts object into an array, each object in the array is [key, value] array. an array of arrays

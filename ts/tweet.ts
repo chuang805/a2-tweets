@@ -56,13 +56,12 @@ class Tweet {
         else {
             unitIndex = words.indexOf("km"); // if the unit isnt mi, then it is km
         }
-        console.log(this.text);
-        console.log(words);
-        console.log(unitIndex);
-        console.log(words[unitIndex + 1]);
+
+        // console.log(words.indexOf("mi"));
+        // console.log(words.indexOf("km"));
         return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit 
     }
-
+    
     get distance():number {
         if(this.source != 'completed_event') {
             return 0;
