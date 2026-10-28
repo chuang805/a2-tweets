@@ -27,7 +27,7 @@ class Tweet {
     get written():boolean {
         //TODO: identify whether the tweet is written
         // part 1: c) user-written tweets
-        const strippedText = this.text.split(" https://")[0];
+        const strippedText = this.text.split(" https://")[0]; // take the half before " https://" with [0] index
         return strippedText.includes(" - ");
     }
 
@@ -37,7 +37,7 @@ class Tweet {
         }
         //TODO: parse the written text from the tweet
         // part 1: c) user-written tweets
-        const strippedText = this.text.split(" https://")[0]; // take the half before " https://" with [0] index
+        const strippedText = this.text.split(" https://")[0]; // take the half before " https://" with [0] index. split returns string array, need to index below
         return strippedText.split(" - ")[1]; // take the part after " - " with [1] index; [0] is the RunKeeper generated text
     }
 
@@ -46,7 +46,16 @@ class Tweet {
             return "unknown";
         }
         //TODO: parse the activity type from the text of the tweet
-        return "";
+        // part 2: a) determining activity type. only has to be done for completed tweets
+        const words = this.text.split(" "); // turn entire text into array of String elements, split by " "
+        let unitIndex; // empty variable for now, will set below
+        if (words.indexOf("mi") !== -1) { // indexOf finds the index starting point of the word. indexOf = -1 when it cant find the word. so here, if it finds "mi", then...
+            unitIndex = words.indexOf("mi");
+        }
+        else {
+            unitIndex = words.indexOf("km"); // if the unit isnt mi, then it is km
+        }
+        return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit
     }
 
     get distance():number {
@@ -54,6 +63,7 @@ class Tweet {
             return 0;
         }
         //TODO: prase the distance from the text of the tweet
+        // part 2: a) determining distance
         return 0;
     }
 
