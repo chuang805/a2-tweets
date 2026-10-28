@@ -52,14 +52,16 @@ class Tweet {
         let unitIndex; // empty variable for now, will set below
         if (words.indexOf("km") !== -1) { // indexOf finds the index starting point of the word. indexOf = -1 when it cant find the word. so here, if it finds "km", then...
             unitIndex = words.indexOf("km");
+            return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit (km or mi)
         }
-        else {
+        else if (words.indexOf("mi") !== -1) { // if it finds mi
             unitIndex = words.indexOf("mi"); // if the unit isnt km, then it is mi
+            return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit (km or mi)
         }
-
-        // console.log(words.indexOf("mi"));
-        // console.log(words.indexOf("km"));
-        return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit 
+        else { // if the completed tweet is duration based, no distance. exclude it from vega-lite graph
+            return "unknown";
+        }
+        // return words[unitIndex + 1]; // out of the word index, return the word right after the measurement unit (km or mi)
     }
     
     get distance():number {
