@@ -42,7 +42,7 @@ function parseTweets(runkeeper_tweets) {
 	const numActivityTypes = Object.keys(activityCounts).length;
 	document.getElementById('numberActivities').innerText = numActivityTypes;
 
-	// turning activityCounts into Vega-Lite data for 2b
+	// turning activityCounts into Vega-Lite data for 2b plot 1
 	const activityData = Object.entries(activityCounts).map( // Object.entries() turns the activityCounts object into an array, each object in the array is [key, value] array. an array of arrays
 		([activity, count]) => ({ // map then turns each array in [key, value] form into objects in key: value format. .map() unpacks each array into an object
 			activity: activity,
@@ -81,11 +81,114 @@ function parseTweets(runkeeper_tweets) {
     sortedActivities[2][0]
 	];
 
-	// write 3 most logged tweets on activities page
-	document.getElementById('firstMost').innerText = sortedActivities[0][0];
-	document.getElementById('secondMost').innerText = sortedActivities[1][0];
-	document.getElementById('thirdMost').innerText = sortedActivities[2][0];
-		
+	// from plot 1: write 3 most logged tweets on activities page
+	document.getElementById('firstMost').innerText = topThree[0];
+	document.getElementById('secondMost').innerText = topThree[1];
+	document.getElementById('thirdMost').innerText = topThree[2];
+
+	// plot 2
+	const activityDistanceData = tweet_array
+    .filter(tweet => topThree.includes(tweet.activityType))
+    .map(tweet => ({
+        activity: tweet.activityType,
+        distance: tweet.distance,
+        day: tweet.time.toLocaleDateString('en-US', {
+            weekday: 'short'
+        })
+    }));
+	
+	distance_vis_spec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "description": "Distances by weekday for top three activities",
+
+    "data": {
+        "values": activityDistanceData
+    },
+
+    "mark": "point",
+    "encoding": {
+        "x": {
+            "field": "day",
+            "type": "nominal",
+            "sort":	
+				[
+                "Sun",
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat"
+            ],
+			"title": "time (day)"
+        },
+        "y": {
+            "field": "distance",
+            "type": "quantitative"
+        },
+        "color": {
+            "field": "activity",
+            "type": "nominal"
+        	}
+    	}
+	};
+	vegaEmbed('#distanceVis', distance_vis_spec, {actions:false});
+
+	// // from plot 2: write what people did the longest and shortest distance out of those 3 on activities page (can be hardcoded?)
+	// document.getElementById('longestActivityType').innerText = "idk";
+	// document.getElementById('shortestActivityType').innerText = "idk";
+
+	// plot 3
+	mean_distance_spec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "data": {
+        "values": activityDistanceData
+    },
+
+    "mark": "point",
+
+    "encoding": {
+        "x": {
+            "field": "day",
+            "type": "nominal",
+            "sort": [
+                "Sun",
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat"
+            ],
+            "title": "time (day)"
+        },
+        "y": {
+            "field": "distance",
+            "type": "quantitative",
+            "aggregate": "mean",
+            "title": "Mean of distance"
+        },
+        "color": {
+            "field": "activity",
+            "type": "nominal"
+        	}
+    	}
+	};
+
+	// button that switches between distances of top 3 for whole week vs aggregated by mean
+	let showMeans = false;
+	document.getElementById("aggregate").addEventListener("click", () => {
+		if (showMeans) {
+			vegaEmbed('#distanceVis', distance_vis_spec, { actions: false });
+			document.getElementById("aggregate").innerText = "Show means";
+		} else {
+			vegaEmbed('#distanceVis', mean_distance_spec, { actions: false });
+			document.getElementById("aggregate").innerText = "Show all activities";
+		}
+		showMeans = !showMeans;
+	});
 }
 
 //Wait for the DOM to load
