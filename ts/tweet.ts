@@ -50,11 +50,11 @@ class Tweet {
         // part 2: a) determining activity type. only has to be done for completed tweets
         const words = this.text.split(" "); // turn entire text into array of String elements, split by " "
         let unitIndex; // empty variable for now, will set below
-        if (words.indexOf("mi") !== -1) { // indexOf finds the index starting point of the word. indexOf = -1 when it cant find the word. so here, if it finds "mi", then...
-            unitIndex = words.indexOf("mi");
+        if (words.indexOf("km") !== -1) { // indexOf finds the index starting point of the word. indexOf = -1 when it cant find the word. so here, if it finds "km", then...
+            unitIndex = words.indexOf("km");
         }
         else {
-            unitIndex = words.indexOf("km"); // if the unit isnt mi, then it is km
+            unitIndex = words.indexOf("mi"); // if the unit isnt km, then it is mi
         }
 
         // console.log(words.indexOf("mi"));
