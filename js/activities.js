@@ -27,17 +27,16 @@ function parseTweets(runkeeper_tweets) {
 			}
 		}
 	});
-	// console.log(activityCounts);
-	tweet_array.forEach(tweet => {
-    if (
-        tweet.activityType === "Just" 
-		// ||
-        // tweet.activityType === "activity" ||
-        // tweet.activityType === "chair"
-    ) {
-        console.log(tweet.text);
-    }
-	});
+	// testing for tweets that say Just w/o distance, or activities with 2 words
+	// tweet_array.forEach(tweet => {
+    // if (
+    //     // tweet.activityType === "Just" 
+	// 	// ||
+    //     tweet.activityType === "chair"
+    // ) {
+    //     console.log(tweet.text);
+    // }
+	// });
 
 	// turning activityCounts into Vega-Lite data for 2b
 	const activityData = Object.entries(activityCounts).map( // Object.entries() turns the activityCounts object into an array, each object in the array is [key, value] array. an array of arrays
