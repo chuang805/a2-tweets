@@ -20,8 +20,16 @@ function parseTweets(runkeeper_tweets) {
 	// the dates are found using the math min/max formulas to find the "smallest" date (earliest) and "largest" date (latest).
 	// ...times takes the above times array and separates each element (each tweet's time) into its own argument rather than inputting the whole tweet array into the Math function. spread operator
 	// the found min/max are then converted into Date objects, and then formatted with toLocaleDateString() for local timezone.
-	document.getElementById('firstDate').innerText = new Date(Math.min(...times)).toLocaleDateString();
-	document.getElementById('lastDate').innerText = new Date(Math.max(...times)).toLocaleDateString();
+	document.getElementById('firstDate').innerText = new Date(Math.min(...times)).toLocaleDateString('en-US', {
+																										weekday: 'long',
+																										year: 'numeric',
+																										month: 'long',
+																										day: 'numeric'});
+	document.getElementById('lastDate').innerText = new Date(Math.max(...times)).toLocaleDateString('en-US', {
+																										weekday: 'long',
+																										year: 'numeric',
+																										month: 'long',
+																										day: 'numeric'});
 
 	// part 1: b) tweet categories. source getter function in tweet.ts determined categories for tweets
 	const allCompletedEvents = tweet_array.filter(tweet => tweet.source == "completed_event"); // create an array with tweets that return completed_event when source getter (function in tweet.ts) is called
